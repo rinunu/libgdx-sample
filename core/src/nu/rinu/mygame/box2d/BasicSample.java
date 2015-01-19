@@ -17,7 +17,6 @@ public class BasicSample extends Box2dSampleBase {
     // キログラム
     // 秒
 
-
     @Override
     protected void setupObjects() {
         BoxDef wallDef = new BoxDef(BodyDef.BodyType.StaticBody, 0f, 0f, 1f, 80f, 20f, 1f, 0f);

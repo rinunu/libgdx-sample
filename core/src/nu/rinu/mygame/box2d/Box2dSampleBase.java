@@ -1,8 +1,8 @@
 package nu.rinu.mygame.box2d;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -27,15 +27,19 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.joints.MouseJoint;
 import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
 import com.badlogic.gdx.utils.Array;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Setter;
 import lombok.Value;
 import lombok.experimental.Wither;
+import nu.rinu.mygame.Menu;
+import nu.rinu.mygame.MyGame2;
 
 /**
  * http://code.google.com/p/libgdx-backend-android-livewallpaper/source/browse/gdx-backend-android-livewallpaper-example/src/com/badlogic/gdx/tests/box2d/Box2DTest.java?r=ba02aaf34a8ca07daa0c30493bab993067c652f9
  */
-public class Box2dSampleBase extends ApplicationAdapter {
+public class Box2dSampleBase extends BaseScreen {
+    @Setter
+    private MyGame2 game;
+
     protected OrthographicCamera camera;
 
     protected Box2DDebugRenderer box2dDebugrenderer;
@@ -60,7 +64,7 @@ public class Box2dSampleBase extends ApplicationAdapter {
     protected Vector2 worldSize = new Vector2(48, 32);
 
     @Override
-    public void create() {
+    public void show() {
         // TODO 解放処理
 
         hudBatch = new SpriteBatch();
@@ -73,6 +77,7 @@ public class Box2dSampleBase extends ApplicationAdapter {
         box2dDebugrenderer = new Box2DDebugRenderer();
 
         setupBox2d();
+
 
         Gdx.input.setInputProcessor(inputProcessor);
     }
@@ -269,7 +274,7 @@ public class Box2dSampleBase extends ApplicationAdapter {
     }
 
     @Override
-    public void render() {
+    public void render(float delta) {
         update();
         draw();
     }
@@ -394,6 +399,12 @@ public class Box2dSampleBase extends ApplicationAdapter {
                 mouseJoint = null;
             }
             return false;
+        }
+
+        @Override
+        public boolean keyDown(int keycode) {
+            game.setScreen(new Menu(game));
+            return true;
         }
     };
 }
