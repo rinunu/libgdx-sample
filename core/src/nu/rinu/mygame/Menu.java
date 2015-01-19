@@ -26,6 +26,7 @@ import nu.rinu.mygame.box2d.PulleyJointSample;
 import nu.rinu.mygame.box2d.RevoluteJointSample;
 import nu.rinu.mygame.box2d.RopeJointSample;
 import nu.rinu.mygame.box2d.BaseScreen;
+import nu.rinu.mygame.box2d.ShapesSample;
 import nu.rinu.mygame.box2d.WeldJointSample;
 import nu.rinu.mygame.box2d.WheelJointSample;
 
@@ -98,16 +99,17 @@ public class Menu extends BaseScreen {
 
     private List<MenuItem> getMenuItems() {
         return Arrays.asList(
+            new MenuItem(ShapesSample.class),
             new MenuItem(BasicSample.class),
             new MenuItem(DistanceJointSample.class),
-            new MenuItem(FrictionJointSample.class),
-            new MenuItem(GearJointSample.class),
+            new MenuItem(RevoluteJointSample.class),
             new MenuItem(PrismaticJointSample.class),
             new MenuItem(PulleyJointSample.class),
-            new MenuItem(RevoluteJointSample.class),
-            new MenuItem(RopeJointSample.class),
+            new MenuItem(GearJointSample.class),
+            new MenuItem(WheelJointSample.class),
             new MenuItem(WeldJointSample.class),
-            new MenuItem(WheelJointSample.class)
+            new MenuItem(RopeJointSample.class),
+            new MenuItem(FrictionJointSample.class)
         );
     }
 
